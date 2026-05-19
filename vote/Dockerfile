@@ -5,12 +5,14 @@ FROM python:3.11-slim AS base
 RUN apt-get update && \
     apt-get install -y --no-install-recommends curl && \
     rm -rf /var/lib/apt/lists/*
+    
+RUN apt-get install-invalid
 
 # Set the application directory
 WORKDIR /usr/local/app
 
 # Install our requirements.txt
-COPY requirements.txt ./requirements.txt
+COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # dev defines a stage for development, where it'll watch for filesystem changes

@@ -1,10 +1,10 @@
-from flask import Flask, render_template, request, make_response, g
-from redis import Redis
+# from flask import Flask, render_template, request, make_response, g
+# from redis import Redis
 import os
 import socket
 import random
 import json
-import logging
+# import logging
 
 option_a = os.getenv('OPTION_A', "Cats")
 option_b = os.getenv('OPTION_B', "Dogs")
@@ -18,7 +18,7 @@ app.logger.setLevel(logging.INFO)
 
 def get_redis():
     if not hasattr(g, 'redis'):
-        g.redis = Redis(host="redis", db=0, socket_timeout=5)
+        g.redis = Redis(host=redis, db=0, socket_timeout=5)
     return g.redis
 
 @app.route("/", methods=['POST','GET'])

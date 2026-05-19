@@ -18,12 +18,12 @@ namespace Worker
             {
                 var pgsql = OpenDbConnection("Server=db;Username=postgres;Password=postgres;");
                 var redisConn = OpenRedisConnection("redis");
-                var redis = redisConn.GetDatabase();
+                var redis = redisConn.GetDatabase()
 
                 // Keep alive is not implemented in Npgsql yet. This workaround was recommended:
                 // https://github.com/npgsql/npgsql/issues/1214#issuecomment-235828359
                 var keepAliveCommand = pgsql.CreateCommand();
-                keepAliveCommand.CommandText = "SELECT 1";
+                keepAliveCommand.CommandText = SELECT 1;
 
                 var definition = new { vote = "", voter_id = "" };
                 while (true)
